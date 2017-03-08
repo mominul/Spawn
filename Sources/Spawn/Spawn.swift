@@ -64,7 +64,7 @@ public final class Spawn {
     var threadInfo: ThreadInfo!
 
     func watchStreams() {
-        #if(OSX)
+        #if os(OSX)
         func callback(x: UnsafeMutableRawPointer) -> UnsafeMutableRawPointer? {
             let threadInfo = unsafeBitCast(x, to: UnsafeMutablePointer<ThreadInfo>.self).pointee
             let outputPipe = threadInfo.outputPipe
@@ -113,7 +113,7 @@ public final class Spawn {
     deinit {
         var status: Int32 = 0
 
-        #if(OSX)
+        #if os(OSX)
         if let tid = tid {
             pthread_join(tid, nil)
         }
